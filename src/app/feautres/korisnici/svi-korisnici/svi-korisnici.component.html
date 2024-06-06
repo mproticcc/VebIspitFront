@@ -1,0 +1,32 @@
+<h2>Users</h2>
+
+<table class="users-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Last Name</th>
+      <th>User Type</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.ime }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.prezime }}</td>
+      <td>{{ user.tip }}</td>
+      <td>{{ user.status }}</td>
+      <td>
+        <button>Edit</button>
+        <button
+          *ngIf="user.tip !== 'administrator'"
+          (click)="toggleStatus(user)"
+        >
+          Toggle Status
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

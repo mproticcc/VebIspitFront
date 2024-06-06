@@ -1,0 +1,16 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="brand">Your CMS</div>
+    <ul class="nav-links">
+      <li><button [routerLink]="['destinacije']">Destinations</button></li>
+      <li><button [routerLink]="['clanci']">Articles</button></li>
+      <li *ngIf="isAdmin">
+        <button [routerLink]="['koricnici']">Users</button>
+      </li>
+    </ul>
+    <div class="user-info">
+      <span>{{ userName }}</span>
+      <button (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>

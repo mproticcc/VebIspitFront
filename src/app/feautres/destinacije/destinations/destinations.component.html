@@ -1,0 +1,25 @@
+<h2>Destinations</h2>
+
+<table class="destinations-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let destination of destinations">
+      <td (click)="goToDestinationArticles(destination.ime)">
+        {{ destination.ime }}
+      </td>
+      <td>{{ destination.opis }}</td>
+      <td>
+        <button (click)="editDestination(destination.id)">Edit</button>
+        <button (click)="deleteDestination(destination.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="addDestination()">Add Destination</button>

@@ -1,0 +1,52 @@
+.destinations-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.destinations-table th,
+.destinations-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.destinations-table th {
+  background-color: #f2f2f2;
+}
+
+.destinations-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+.destinations-table td button {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.destinations-table button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 2px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.destinations-table button:hover {
+  background-color: #45a049;
+}
+
+button.add-button {
+  background-color: #008cba;
+}
+
+button.add-button:hover {
+  background-color: #006080;
+}

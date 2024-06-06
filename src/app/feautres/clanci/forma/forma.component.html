@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>{{ isEditMode ? "Edit Article" : "Add Article" }}</h2>
+  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" formControlName="title" />
+    </div>
+    <div class="form-group">
+      <label for="author">Author:</label>
+      <input type="text" id="author" formControlName="author" />
+    </div>
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <textarea id="content" formControlName="content"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="destination">Destination:</label>
+      <input type="text" id="destination" formControlName="destination" />
+    </div>
+    <button type="submit" class="btn">
+      {{ isEditMode ? "Update" : "Create" }}
+    </button>
+  </form>
+</div>

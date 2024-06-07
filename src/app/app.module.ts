@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { MainModule } from './feautres/main/main.module';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +16,11 @@ import { MainModule } from './feautres/main/main.module';
     RouterModule,
     MainModule,
   ],
-  providers: [],
+  providers: [
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
+    // Ostali servisi i providera
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

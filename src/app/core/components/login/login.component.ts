@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -32,11 +33,12 @@ export class LoginComponent implements OnInit {
 
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
+    const hashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
 
-    this.authService.login(email, password).subscribe(
+    this.authService.login(email, hashedPassword).subscribe(
       (data: any) => {
         if (data) {
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('token', data);
           this.router.navigate(['/main']);
         } else {
           this.errorMessage = data.message;

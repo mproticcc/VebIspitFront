@@ -7,15 +7,20 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://your-api-url';
+  private apiUrl = 'http://localhost:8080/login';
 
   constructor(private http: HttpClient, private router: Router) {}
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, { email, password });
+    return this.http.post<any>(this.apiUrl, { email, password });
   }
+
   logout(): void {
-    this.router.navigate(['/login']);
+    localStorage.removeItem('token');
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 
   isAdmin(): boolean {

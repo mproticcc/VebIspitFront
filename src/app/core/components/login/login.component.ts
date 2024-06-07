@@ -33,19 +33,18 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
 
-    // this.authService.login(email, password).subscribe(
-    //   (data: any) => {
-    //     if (data.success) {
-    //       this.router.navigate(['/main']);
-    //     } else {
-    //       this.errorMessage = data.message;
-    //     }
-    //   },
-    //   (error: any) => {
-    //     console.error('Error:', error);
-    //   }
-    // );
-
-    this.router.navigate(['/main']);
+    this.authService.login(email, password).subscribe(
+      (data: any) => {
+        if (data) {
+          localStorage.setItem('token', data.token);
+          this.router.navigate(['/main']);
+        } else {
+          this.errorMessage = data.message;
+        }
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
   }
 }

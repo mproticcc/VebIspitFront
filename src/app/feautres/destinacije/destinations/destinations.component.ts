@@ -35,7 +35,9 @@ export class DestinationsComponent implements OnInit {
   }
 
   deleteDestination(destinationId: number): void {
-    // Implement delete functionality here
+    this.destinationService.deleteDestinacija(destinationId).subscribe(() => {
+      this.getDestinations();
+    });
   }
 
   addDestination(): void {

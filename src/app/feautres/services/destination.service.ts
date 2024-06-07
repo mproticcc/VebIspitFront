@@ -25,4 +25,9 @@ export class DestinationService {
   createDestination(destination: Destination): Observable<Destination> {
     return this.http.post<Destination>(this.apiUrl, destination);
   }
+
+  deleteDestinacija(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete(url);
+  }
 }

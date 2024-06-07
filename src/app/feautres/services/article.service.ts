@@ -24,6 +24,11 @@ export class ArticleService {
     return throwError('Something went wrong; please try again later.');
   }
 
+  deleteClanak(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete(url);
+  }
+
   incrementVisitCount(articleId: number): Observable<any> {
     const url = `${this.apiUrl}/${articleId}/inkrementiraj_posete`;
     return this.http.put(url, null);

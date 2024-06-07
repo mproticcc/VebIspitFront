@@ -28,7 +28,9 @@ export class SviClanciComponent implements OnInit {
   }
 
   deleteArticle(articleId: number): void {
-    // Implement delete functionality here
+    this.articleService.deleteClanak(articleId).subscribe(() => {
+      this.getArticles();
+    });
   }
 
   addArticle(): void {

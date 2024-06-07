@@ -20,11 +20,18 @@
       <td>{{ user.status }}</td>
       <td>
         <button>Edit</button>
+
         <button
-          *ngIf="user.tip !== 'administrator'"
-          (click)="toggleStatus(user)"
+          *ngIf="user.status == 'aktivan' && user.tip != 'admin'"
+          (click)="deaktivirajKornsnika(user)"
         >
-          Toggle Status
+          Deaktiviraj
+        </button>
+        <button
+          *ngIf="user.status == 'neaktivan' && user.tip != 'admin'"
+          (click)="aktivirajKorisnika(user)"
+        >
+          Aktiviraj
         </button>
       </td>
     </tr>

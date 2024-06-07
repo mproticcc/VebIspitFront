@@ -1,6 +1,7 @@
 import { User } from './../../models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-svi-korisnici',
@@ -10,7 +11,7 @@ import { UserService } from '../../services/user.service';
 export class SviKorisniciComponent implements OnInit {
   users!: User[];
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private route: Router) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -20,16 +21,11 @@ export class SviKorisniciComponent implements OnInit {
     this.userService.getUsers().subscribe((users) => (this.users = users));
   }
 
-  toggleStatus(user: User): void {
-    this.userService.toggleStatus(user).subscribe((updatedUser) => {
-      // Find index of updated user in users array
-      const index = this.users.findIndex((u) => u.id === updatedUser.id);
-      // Update user status in users array
-      if (index !== -1) {
-        this.users[index].status = updatedUser.status;
-      }
-    });
+  aktivirajKorisnika(user: User): void {
+    this.userService.aktivirajKorisnika(user).subscribe();
   }
 
-  // Implement other methods such as deleteUser, editUser, etc. if needed
+  deaktivirajKornsnika(user: User): void {
+    this.userService.deaktivirajKorisnika(user).subscribe();
+  }
 }

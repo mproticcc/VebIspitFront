@@ -30,9 +30,9 @@ export class SingleClanakComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id')!;
     this.articleService.getArticle(id).subscribe((article) => {
       this.article = article;
-      this.incrementArticleViews(); // Inkrementiranje broja poseta članku
-      this.getActivities(); // Dohvatanje aktivnosti vezanih za članak
-      this.getComments(); // Dohvatanje komentara vezanih za članak
+      this.incrementVisitCount(id);
+      this.getActivities();
+      this.getComments();
     });
   }
 
@@ -69,10 +69,9 @@ export class SingleClanakComponent implements OnInit {
     }
   }
 
-  incrementArticleViews(): void {
-    // Implementirajte logiku za inkrementiranje broja poseta članku
-    // this.articleService.incrementArticleViews(this.article.id).subscribe(() => {
-    //   // Broj poseta je uspešno inkrementiran
-    // });
+  incrementVisitCount(id: number): void {
+    this.articleService.incrementVisitCount(id).subscribe(() => {
+      console.log('Visit count incremented successfully');
+    });
   }
 }

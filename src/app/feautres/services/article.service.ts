@@ -24,6 +24,11 @@ export class ArticleService {
     return throwError('Something went wrong; please try again later.');
   }
 
+  incrementVisitCount(articleId: number): Observable<any> {
+    const url = `${this.apiUrl}/${articleId}/inkrementiraj_posete`;
+    return this.http.put(url, null);
+  }
+
   updateArticle(id: number, article: Article): Observable<Article> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.put<Article>(url, article);

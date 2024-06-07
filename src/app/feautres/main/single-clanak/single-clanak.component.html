@@ -1,16 +1,20 @@
 <div class="article">
   <h2>{{ article.naslov }}</h2>
-  <p>
+  <p class="article-info">
     <strong>Datum kreiranja:</strong>
     {{ article.datumKreiranja | date : "medium" }}
   </p>
-  <p><strong>Ime autora:</strong> {{ getAuthorName(article.autorId) }}</p>
-  <p><strong>Tekst članka:</strong></p>
-  <p>{{ article.tekst }}</p>
+  <p class="article-info">
+    <strong>Ime autora:</strong> {{ getAuthorName(article.autorId) }}
+  </p>
+  <p class="article-text"><strong>Tekst članka:</strong></p>
+  <p class="article-text">{{ article.tekst }}</p>
 
   <h3>Turističke aktivnosti:</h3>
-  <ul>
-    <li *ngFor="let activity of activities">{{ activity.naziv }}</li>
+  <ul class="aktivnostiCss">
+    <li *ngFor="let activity of activities">
+      {{ activity.naziv }}
+    </li>
   </ul>
 
   <h3>Komentari</h3>
@@ -31,7 +35,7 @@
   <div class="comments">
     <div *ngFor="let comment of comments" class="comment">
       <p>
-        <strong>{{ comment.imeAutora }}</strong> - {{ comment.tekst }}
+        <strong>{{ comment.autorKomentara }}</strong> - {{ comment.tekst }}
       </p>
       <p>
         <em>{{ comment.datumKreiranja | date : "medium" }}</em>

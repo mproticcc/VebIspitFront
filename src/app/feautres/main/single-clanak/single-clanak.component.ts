@@ -1,9 +1,11 @@
+import { CommnetsService } from './../../services/commnets.service';
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../../models/article.model';
 import { Comment } from '../../models/kometar.model';
 import { Activity } from '../../models/aktivnost.model';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
+import { AktivnostiService } from '../../services/aktivnosti.service';
 
 @Component({
   selector: 'app-single-clanak',
@@ -19,7 +21,9 @@ export class SingleClanakComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private commnetsService: CommnetsService,
+    private aktivnostiService: AktivnostiService
   ) {}
 
   ngOnInit(): void {
@@ -31,21 +35,26 @@ export class SingleClanakComponent implements OnInit {
     this.articleService.getArticle(id).subscribe((article) => {
       this.article = article;
       this.incrementVisitCount(id);
-      this.getActivities();
-      this.getComments();
+      this.getActivities(id);
+      this.getComments(id);
     });
   }
 
-  getActivities(): void {
-    // Implementirajte logiku za dohvatanje aktivnosti vezanih za članak
+  getActivities(id: number): void {
+    this.aktivnostiService
+      .getAktivnostiByClanakId(id)
+      .subscribe((activities) => {
+        this.activities = activities;
+      });
   }
 
-  getComments(): void {
-    // Implementirajte logiku za dohvatanje komentara vezanih za članak
+  getComments(id: number): void {
+    this.commnetsService.getKomentar(id).subscribe((comments) => {
+      this.comments = comments;
+    });
   }
 
   getAuthorName(authorId: number): string {
-    // Implementirajte logiku za dobijanje imena autora na osnovu ID-a
     return 'prota';
   }
 

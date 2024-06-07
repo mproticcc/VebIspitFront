@@ -6,7 +6,7 @@
 }
 
 .article h2 {
-  color: #007bff;
+  color: #2e8b57;
 }
 
 .article p {
@@ -30,7 +30,7 @@
 }
 
 .article form button {
-  background-color: #007bff;
+  background-color: #2e8b57;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -42,6 +42,7 @@
   border: 1px solid #ccc;
   padding: 10px;
   margin-bottom: 10px;
+  width: 35%;
 }
 
 .comment p {
@@ -55,4 +56,28 @@
 
 .comment p:last-child {
   margin-bottom: 0;
+}
+
+.aktivnostiCss {
+  list-style-type: none;
+}
+
+.aktivnostiCss li {
+  font-family: "Comic Sans MS", cursive;
+  border: 1px solid #2e8b57;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  display: inline-block;
+}
+.article-info {
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.article-text {
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }

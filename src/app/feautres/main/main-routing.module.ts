@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
 import { PocetnaComponent } from './pocetna/pocetna.component';
+import { NajcitanijiComponent } from './najcitaniji/najcitaniji.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'pocetna',
         component: PocetnaComponent,
+      },
+      {
+        path: 'najcitaniji',
+        component: NajcitanijiComponent,
       },
     ],
   },

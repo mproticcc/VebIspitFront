@@ -14,4 +14,8 @@ export class CommnetsService {
   getKomentar(id: number): Observable<Comment[]> {
     return this.http.get<Comment[]>(`${this.apiUrl}/${id}`);
   }
+
+  kreirajNoviKomentar(noviKomentar: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}`, noviKomentar);
+  }
 }

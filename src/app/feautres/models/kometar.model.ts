@@ -1,6 +1,6 @@
 export interface Comment {
   id: number;
-  autorKomentara: string;
+  ime_autora: string;
   tekst: string;
   datumKreiranja: Date;
   clanakId: number;

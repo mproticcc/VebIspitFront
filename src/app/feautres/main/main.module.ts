@@ -7,9 +7,21 @@ import { MainRoutingModule } from './main-routing.module';
 import { PocetnaComponent } from './pocetna/pocetna.component';
 import { NajcitanijiComponent } from './najcitaniji/najcitaniji.component';
 import { SingleClanakComponent } from './single-clanak/single-clanak.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [MainPageComponent, PocetnaComponent, NajcitanijiComponent, SingleClanakComponent],
-  imports: [CommonModule, RouterModule, SharedModule, MainRoutingModule],
+  declarations: [
+    MainPageComponent,
+    PocetnaComponent,
+    NajcitanijiComponent,
+    SingleClanakComponent,
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    MainRoutingModule,
+    FormsModule,
+  ],
 })
 export class MainModule {}

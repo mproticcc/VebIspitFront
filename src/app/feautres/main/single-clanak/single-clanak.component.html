@@ -4,9 +4,7 @@
     <strong>Datum kreiranja:</strong>
     {{ article.datumKreiranja | date : "medium" }}
   </p>
-  <p class="article-info">
-    <strong>Ime autora:</strong> {{ getAuthorName(article.autorId) }}
-  </p>
+
   <p class="article-text"><strong>Tekst članka:</strong></p>
   <p class="article-text">{{ article.tekst }}</p>
 
@@ -18,24 +16,27 @@
   </ul>
 
   <h3>Komentari</h3>
-  <!-- <form (submit)="addComment()">
+  <form (submit)="addComment()">
     <input
       type="text"
       placeholder="Ime čitaoca"
       [(ngModel)]="newCommentName"
+      [ngModelOptions]="{ standalone: true }"
       required
     />
     <textarea
       placeholder="Tekst komentara"
       [(ngModel)]="newCommentText"
+      [ngModelOptions]="{ standalone: true }"
       required
     ></textarea>
     <button type="submit">Dodaj komentar</button>
-  </form> -->
+  </form>
+
   <div class="comments">
     <div *ngFor="let comment of comments" class="comment">
       <p>
-        <strong>{{ comment.autorKomentara }}</strong> - {{ comment.tekst }}
+        <strong>{{ comment.ime_autora }}</strong> - {{ comment.tekst }}
       </p>
       <p>
         <em>{{ comment.datumKreiranja | date : "medium" }}</em>

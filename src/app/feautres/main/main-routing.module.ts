@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
 import { PocetnaComponent } from './pocetna/pocetna.component';
 import { NajcitanijiComponent } from './najcitaniji/najcitaniji.component';
+import { SingleClanakComponent } from './single-clanak/single-clanak.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'najcitaniji',
         component: NajcitanijiComponent,
+      },
+      {
+        path: ':id',
+        component: SingleClanakComponent,
       },
     ],
   },

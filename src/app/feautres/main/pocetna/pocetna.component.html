@@ -1,12 +1,14 @@
 <h2 style="text-align: center">Lista najnovijih članaka</h2>
 
 <div class="article-list">
-  <div *ngFor="let article of articles" class="article-item">
+  <div
+    *ngFor="let article of articles"
+    class="article-item"
+    [routerLink]="['/main', article.id]"
+  >
     <h3>{{ article.naslov }}</h3>
     <p>{{ article.tekst | slice : 0 : 100 }}...</p>
-    <p>
-      <strong>Destinacija:</strong> {{ getDestinacija(article.destinacijaId) }}
-    </p>
+
     <p>
       <strong>Datum objave:</strong>
       {{ article.datumKreiranja | date : "medium" }}

@@ -6,9 +6,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MainRoutingModule } from './main-routing.module';
 import { PocetnaComponent } from './pocetna/pocetna.component';
 import { NajcitanijiComponent } from './najcitaniji/najcitaniji.component';
+import { SingleClanakComponent } from './single-clanak/single-clanak.component';
 
 @NgModule({
-  declarations: [MainPageComponent, PocetnaComponent, NajcitanijiComponent],
+  declarations: [MainPageComponent, PocetnaComponent, NajcitanijiComponent, SingleClanakComponent],
   imports: [CommonModule, RouterModule, SharedModule, MainRoutingModule],
 })
 export class MainModule {}

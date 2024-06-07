@@ -12,7 +12,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let article of articles">
-      <td (click)="goToArticle(article.id)">{{ article.naslov }}</td>
+      <td [routerLink]="['/main', article.id]" style="cursor: pointer">
+        {{ article.naslov }}
+      </td>
       <td>{{ article.tekst }}</td>
       <td>{{ article.datumKreiranja }}</td>
       <td>{{ article.brojPoseta }}</td>

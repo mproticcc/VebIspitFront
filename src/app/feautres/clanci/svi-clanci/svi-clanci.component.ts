@@ -23,10 +23,6 @@ export class SviClanciComponent implements OnInit {
       .subscribe((articles) => (this.articles = articles));
   }
 
-  goToArticle(articleId: number): void {
-    this.router.navigate(['/article', articleId]);
-  }
-
   editArticle(articleId: number): void {
     this.router.navigate(['/edit-article', articleId]);
   }

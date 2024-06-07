@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { Article } from '../models/article.model';
 
 @Injectable({
@@ -14,6 +14,16 @@ export class ArticleService {
   getArticles(): Observable<Article[]> {
     return this.http.get<Article[]>(this.apiUrl);
   }
+  getArticle(id: number): Observable<Article> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Article>(url).pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: any) {
+    console.error('An error occurred:', error);
+    return throwError('Something went wrong; please try again later.');
+  }
+
   updateArticle(id: number, article: Article): Observable<Article> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.put<Article>(url, article);

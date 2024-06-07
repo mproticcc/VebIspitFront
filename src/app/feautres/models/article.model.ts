@@ -1,4 +1,5 @@
 export interface Article {
+  autorId: number;
   destinacijaId: number;
   id: number;
   naslov: string;

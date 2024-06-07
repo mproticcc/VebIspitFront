@@ -1,11 +1,15 @@
 <h2>Najčitaniji članci u proteklih 30 dana</h2>
 
 <div class="article-list">
-  <div *ngFor="let article of mostReadArticles" class="article-item">
+  <div
+    *ngFor="let article of mostReadArticles"
+    class="article-item"
+    [routerLink]="['/main', article.id]"
+  >
     <h3>{{ article.naslov }}</h3>
     <p>{{ article.tekst | slice : 0 : 100 }}...</p>
     <p>
-      <strong>Destinacija:</strong> {{ getDestinacija(article.destinacijaId) }}
+      <!-- <strong>Destinacija:</strong> {{ getDestinacija(article.destinacijaId) }} -->
     </p>
     <p>
       <strong>Datum objave:</strong>

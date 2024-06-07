@@ -1,6 +1,7 @@
 <nav class="navbar">
   <div class="container">
-    <div class="brand">Your CMS</div>
+    <div class="brand" *ngIf="isLogged">CMS</div>
+    <div class="brand" *ngIf="!isLogged">Platforma clanaka</div>
     <ul class="nav-links">
       <li><button [routerLink]="['pocetna']">Pocetna</button></li>
       <li><button [routerLink]="['najcitaniji']">Najcitaniji</button></li>

@@ -4,16 +4,22 @@
     <ul class="nav-links">
       <li><button [routerLink]="['pocetna']">Pocetna</button></li>
       <li><button [routerLink]="['najcitaniji']">Najcitaniji</button></li>
-      <li><button [routerLink]="['destinacije']">Destinations</button></li>
-      <li><button [routerLink]="['clanci']">Articles</button></li>
+      <li *ngIf="isLogged">
+        <button [routerLink]="['destinacije']">Destinacije</button>
+      </li>
+      <li *ngIf="isLogged">
+        <button [routerLink]="['clanci']">Clanci</button>
+      </li>
       <li *ngIf="isAdmin">
-        <button [routerLink]="['koricnici']">Users</button>
+        <button [routerLink]="['koricnici']">Korisnici</button>
       </li>
     </ul>
     <div class="user-info">
-      <span>{{ userName }}</span>
-      <button [routerLink]="['../login']">Login</button>
-      <button (click)="logout()">Logout</button>
+      <span *ngIf="isLogged">{{ userName }}</span>
+      <button *ngIf="!isLogged" [routerLink]="['../login']">Login</button>
+      <button *ngIf="isLogged" (click)="logout()" style="background-color: red">
+        Logout
+      </button>
     </div>
   </div>
 </nav>

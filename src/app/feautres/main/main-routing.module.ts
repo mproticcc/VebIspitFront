@@ -11,6 +11,15 @@ const routes: Routes = [
     component: MainPageComponent,
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'pocetna',
+      },
+      {
+        path: 'pocetna',
+        component: PocetnaComponent,
+      },
+      {
         path: 'destinacije',
         loadChildren: () =>
           import('../destinacije/destinacije.module').then(
@@ -30,10 +39,6 @@ const routes: Routes = [
           import('../korisnici/korisnici.module').then(
             (module) => module.KorisniciModule
           ),
-      },
-      {
-        path: 'pocetna',
-        component: PocetnaComponent,
       },
       {
         path: 'najcitaniji',

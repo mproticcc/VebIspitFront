@@ -38,11 +38,16 @@ export class AuthService {
     return false;
   }
 
+  isLogged(): boolean {
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
+
   getUserName(): string {
     const token = localStorage.getItem('token');
     if (token && !this.jwtHelper.isTokenExpired(token)) {
       const decodedToken: any = this.jwtHelper.decodeToken(token);
-      return decodedToken.ime; // Promenite ime polja ako je drugačije u vašem JWT tokenu
+      return decodedToken.ime;
     }
     return 'Greska';
   }

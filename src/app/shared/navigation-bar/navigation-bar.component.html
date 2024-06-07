@@ -2,6 +2,7 @@
   <div class="container">
     <div class="brand">Your CMS</div>
     <ul class="nav-links">
+      <li><button [routerLink]="['pocetna']">Pocetna</button></li>
       <li><button [routerLink]="['destinacije']">Destinations</button></li>
       <li><button [routerLink]="['clanci']">Articles</button></li>
       <li *ngIf="isAdmin">

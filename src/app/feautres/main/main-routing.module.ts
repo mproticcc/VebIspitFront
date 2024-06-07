@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
+import { PocetnaComponent } from './pocetna/pocetna.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
           import('../korisnici/korisnici.module').then(
             (module) => module.KorisniciModule
           ),
+      },
+      {
+        path: 'pocetna',
+        component: PocetnaComponent,
       },
     ],
   },

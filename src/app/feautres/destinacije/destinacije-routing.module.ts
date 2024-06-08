@@ -11,12 +11,6 @@ const routes: Routes = [
     canLoad: [IsLoggedGuard],
     component: DestinationsComponent,
   },
-  {
-    path: 'destinationForm',
-    canActivate: [IsLoggedGuard],
-    canLoad: [IsLoggedGuard],
-    component: FormaComponent,
-  },
 ];
 
 @NgModule({

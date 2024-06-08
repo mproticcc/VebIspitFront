@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { MainModule } from './feautres/main/main.module';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,11 +16,11 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
     CoreModule,
     RouterModule,
     MainModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
-    // Ostali servisi i providera
   ],
   bootstrap: [AppComponent],
 })

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DestinationService } from '../../services/destination.service';
 import { Destination } from '../../models/destination.model';
+import { MatDialog } from '@angular/material/dialog';
+import { EditDestinacijeDialogComponent } from '../edit-destinacije-dialog/edit-destinacije-dialog.component';
 
 @Component({
   selector: 'app-destinations',
@@ -13,7 +15,8 @@ export class DestinationsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private destinationService: DestinationService
+    private destinationService: DestinationService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -30,8 +33,16 @@ export class DestinationsComponent implements OnInit {
     this.router.navigate(['/articles', destinationName]);
   }
 
-  editDestination(destinationId: number): void {
-    this.router.navigate(['/destinationForm', destinationId]);
+  editDestination(destination: Destination): void {
+    this.dialog.open(EditDestinacijeDialogComponent, {
+      data: {
+        title: 'Edit Destination',
+        destinacija: destination,
+      },
+      position: { top: '40px' },
+      width: '50%',
+      height: '50%',
+    });
   }
 
   deleteDestination(destinationId: number): void {
@@ -41,6 +52,13 @@ export class DestinationsComponent implements OnInit {
   }
 
   addDestination(): void {
-    this.router.navigate(['/destinationForm']);
+    this.dialog.open(EditDestinacijeDialogComponent, {
+      data: {
+        title: 'Add Destination',
+      },
+      position: { top: '40px' },
+      width: '50%',
+      height: '50%',
+    });
   }
 }

@@ -11,7 +11,7 @@
   <h3>Turističke aktivnosti:</h3>
   <ul class="aktivnostiCss">
     <li *ngFor="let activity of activities">
-      {{ activity.naziv }}
+      <a [routerLink]="['/aktivnost', activity.id]">{{ activity.naziv }}</a>
     </li>
   </ul>
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Comment } from '../models/kometar.model';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,17 @@ export class CommnetsService {
   constructor(private http: HttpClient) {}
 
   getKomentar(id: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${this.apiUrl}/${id}`);
+    return this.http
+      .get<Comment[]>(`${this.apiUrl}/${id}`)
+      .pipe(
+        map((comments) =>
+          comments.sort(
+            (a, b) =>
+              new Date(b.datumKreiranja).getTime() -
+              new Date(a.datumKreiranja).getTime()
+          )
+        )
+      );
   }
 
   kreirajNoviKomentar(noviKomentar: any): Observable<any> {

@@ -2,6 +2,7 @@ import { MainPageComponent } from './feautres/main/main-page/main-page.component
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './core/components/login/login.component';
+import { AktivnostComponent } from './feautres/main/aktivnost/aktivnost.component';
 
 const routes: Routes = [
   {

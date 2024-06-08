@@ -8,6 +8,7 @@ import { PocetnaComponent } from './pocetna/pocetna.component';
 import { NajcitanijiComponent } from './najcitaniji/najcitaniji.component';
 import { SingleClanakComponent } from './single-clanak/single-clanak.component';
 import { FormsModule } from '@angular/forms';
+import { AktivnostComponent } from './aktivnost/aktivnost.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     PocetnaComponent,
     NajcitanijiComponent,
     SingleClanakComponent,
+    AktivnostComponent,
   ],
   imports: [
     CommonModule,

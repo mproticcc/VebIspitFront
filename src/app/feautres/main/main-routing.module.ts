@@ -4,6 +4,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { PocetnaComponent } from './pocetna/pocetna.component';
 import { NajcitanijiComponent } from './najcitaniji/najcitaniji.component';
 import { SingleClanakComponent } from './single-clanak/single-clanak.component';
+import { AktivnostComponent } from './aktivnost/aktivnost.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
         component: SingleClanakComponent,
       },
     ],
+  },
+  {
+    path: 'aktivnost/:id',
+    component: AktivnostComponent,
   },
 ];
 

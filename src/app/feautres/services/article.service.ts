@@ -42,4 +42,8 @@ export class ArticleService {
   createArticle(article: Article): Observable<Article> {
     return this.http.post<Article>(this.apiUrl, article);
   }
+
+  getArticlesByActivity(activityId: number): Observable<Article[]> {
+    return this.http.get<Article[]>(`${this.apiUrl}/aktivnost/${activityId}`);
+  }
 }

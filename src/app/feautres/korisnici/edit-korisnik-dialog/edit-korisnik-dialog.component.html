@@ -1,0 +1,79 @@
+<mat-dialog-content class="mat-typography">
+  <mat-dialog-actions align="center">
+    <div class="container" *ngIf="data.title == 'Edit User'">
+      <h2>Edit User</h2>
+      <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+        <div class="form-group">
+          <label for="ime">Ime:</label>
+          <input type="text" id="namimee" formControlName="ime" />
+        </div>
+        <div class="form-group">
+          <label for="prezime">Prezime:</label>
+          <input type="text" id="prezime" formControlName="prezime" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" formControlName="email" />
+        </div>
+        <div class="form-group">
+          <label for="tip">Tip:</label>
+          <select id="tip" formControlName="tip">
+            <option value="admin">admin</option>
+            <option value="uredjivac">uredjivac</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="lozinka">Password:</label>
+          <input type="password" id="lozinka" formControlName="lozinka" />
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+          />
+        </div>
+        <button type="submit" class="btn">Update</button>
+      </form>
+    </div>
+
+    <div class="container" *ngIf="data.title == 'Add User'">
+      <h2>Add User</h2>
+      <form [formGroup]="userForm" (ngSubmit)="addUser()">
+        <div class="form-group">
+          <label for="ime">Ime:</label>
+          <input type="text" id="namimee" formControlName="ime" />
+        </div>
+        <div class="form-group">
+          <label for="prezime">Prezime:</label>
+          <input type="text" id="prezime" formControlName="prezime" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" formControlName="email" />
+        </div>
+        <div class="form-group">
+          <label for="tip">Tip:</label>
+          <select id="tip" formControlName="tip">
+            <option value="admin">admin</option>
+            <option value="uredjivac">uredjivac</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="lozinka">Password:</label>
+          <input type="password" id="lozinka" formControlName="lozinka" />
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+          />
+        </div>
+        <button type="submit" class="btn">Dodaj</button>
+      </form>
+    </div>
+  </mat-dialog-actions></mat-dialog-content
+>

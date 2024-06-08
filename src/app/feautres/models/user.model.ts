@@ -5,4 +5,5 @@ export interface User {
   prezime: string;
   tip: string;
   status: string;
+  lozinka: string;
 }

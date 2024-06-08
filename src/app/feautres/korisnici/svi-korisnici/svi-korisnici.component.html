@@ -19,7 +19,7 @@
       <td>{{ user.tip }}</td>
       <td>{{ user.status }}</td>
       <td>
-        <button>Edit</button>
+        <button (click)="editUser(user)">Edit</button>
 
         <button
           *ngIf="user.status == 'aktivan' && user.tip != 'admin'"
@@ -37,3 +37,5 @@
     </tr>
   </tbody>
 </table>
+
+<button (click)="createUser()">Kreiraj novog korisnika</button>

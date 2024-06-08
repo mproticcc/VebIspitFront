@@ -2,7 +2,7 @@
   <mat-dialog-actions align="center">
     <div class="container" *ngIf="data.title == 'Edit Destination'">
       <form [formGroup]="destinationForm" (ngSubmit)="updateDestination()">
-        <h2>Edit Destination</h2>
+        <h2>Edit Destinaciju</h2>
         <div class="form-group">
           <label for="ime">Ime:</label>
           <input type="text" id="ime" formControlName="ime" />
@@ -16,7 +16,7 @@
     </div>
 
     <div class="container" *ngIf="data.title == 'Add Destination'">
-      <h2>Edit Destination</h2>
+      <h2>Dodaj Destinaciju</h2>
       <form [formGroup]="destinationForm" (ngSubmit)="addDestinacija()">
         <div class="form-group">
           <label for="ime">Name:</label>

@@ -5,15 +5,18 @@ import { FormaComponent } from './forma/forma.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClanciRoutingModule } from './clanci-routing.module';
+import { EditClanciDialogComponent } from './edit-clanci-dialog/edit-clanci-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [SviClanciComponent, FormaComponent],
+  declarations: [SviClanciComponent, FormaComponent, EditClanciDialogComponent],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
     ClanciRoutingModule,
+    MatDialogModule,
   ],
 })
 export class ClanciModule {}

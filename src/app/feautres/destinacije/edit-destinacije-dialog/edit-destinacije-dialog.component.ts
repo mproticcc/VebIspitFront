@@ -12,7 +12,6 @@ import { Destination } from '../../models/destination.model';
 })
 export class EditDestinacijeDialogComponent implements OnInit {
   destinationForm!: FormGroup;
-  isEditMode: boolean = false;
   destinationId!: number;
 
   constructor(

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DestinationsComponent } from './destinations/destinations.component';
-import { FormaComponent } from './forma/forma.component';
 import { IsLoggedGuard } from 'src/app/core/guards/is-logged.guard';
 
 const routes: Routes = [

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SviClanciComponent } from './svi-clanci/svi-clanci.component';
-import { FormaComponent } from './forma/forma.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClanciRoutingModule } from './clanci-routing.module';
@@ -9,7 +8,7 @@ import { EditClanciDialogComponent } from './edit-clanci-dialog/edit-clanci-dial
 import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [SviClanciComponent, FormaComponent, EditClanciDialogComponent],
+  declarations: [SviClanciComponent, EditClanciDialogComponent],
   imports: [
     CommonModule,
     RouterModule,

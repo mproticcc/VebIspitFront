@@ -1,4 +1,4 @@
-<h2 style="text-align: center; color: #333">Članci o aktivnosti</h2>
+<h2 style="text-align: center; color: #333">Članci o {{ activity.naziv }}</h2>
 
 <div class="article-list">
   <div
@@ -10,7 +10,7 @@
     <p>{{ article.tekst | slice : 0 : 100 }}...</p>
     <p>
       <strong>Destinacija:</strong>
-      {{ article.destinacijaId }}
+      {{ article.imeDestinacije }}
     </p>
     <p>
       <strong>Datum objave:</strong>

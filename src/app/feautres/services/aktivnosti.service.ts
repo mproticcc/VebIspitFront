@@ -14,4 +14,9 @@ export class AktivnostiService {
   getAktivnostiByClanakId(clanakId: number): Observable<Activity[]> {
     return this.http.get<Activity[]>(`${this.apiUrl}/clanak/${clanakId}`);
   }
+
+  getAktivnost(id: number): Observable<Activity> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Activity>(url);
+  }
 }

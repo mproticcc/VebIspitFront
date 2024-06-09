@@ -30,4 +30,9 @@ export class DestinationService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete(url);
   }
+
+  getDestinacijaById(id: number): Observable<Destination> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Destination>(url);
+  }
 }

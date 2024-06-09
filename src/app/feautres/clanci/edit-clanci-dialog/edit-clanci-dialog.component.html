@@ -11,6 +11,22 @@
           <label for="tekst">Tekst:</label>
           <textarea id="tekst" formControlName="tekst"></textarea>
         </div>
+        <div>
+          <label for="tekst">Destinacija:</label>
+          <select
+            formControlName="destinacija_id"
+            (change)="onSelect($event.target)"
+          >
+            <option value="">Izaberite destinaciju</option>
+            <option
+              *ngFor="let destinacija of destinations"
+              [value]="destinacija.id"
+            >
+              {{ destinacija.ime }}
+            </option>
+          </select>
+        </div>
+        <br /><br />
 
         <button type="submit" class="btn">Update</button>
       </form>
@@ -29,7 +45,10 @@
         </div>
         <div>
           <label for="tekst">Destinacija:</label>
-          <select (change)="onSelect($event.target)">
+          <select
+            formControlName="destinacija_id"
+            (change)="onSelect($event.target)"
+          >
             <option value="">Izaberite destinaciju</option>
             <option
               *ngFor="let destinacija of destinations"

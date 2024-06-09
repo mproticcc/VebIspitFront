@@ -18,7 +18,7 @@ export class EditClanciDialogComponent implements OnInit {
   isEditMode: boolean = false;
   articleId!: number;
   destinations!: Destination[];
-  selectedDestinationId!: number;
+  selectedDestinationId: number = -1;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,7 +40,6 @@ export class EditClanciDialogComponent implements OnInit {
     }
   }
   onSelect(destinationId: any) {
-    console.log(destinationId.value);
     this.selectedDestinationId = destinationId.value;
   }
 
@@ -48,6 +47,7 @@ export class EditClanciDialogComponent implements OnInit {
     this.articleForm = this.formBuilder.group({
       naslov: ['', Validators.required],
       tekst: ['', Validators.required],
+      destinacija_id: ['', Validators.required],
     });
   }
 
@@ -55,6 +55,7 @@ export class EditClanciDialogComponent implements OnInit {
     this.articleForm.patchValue({
       naslov: clanak.naslov,
       tekst: clanak.tekst,
+      destinacija_id: clanak.destinacijaId,
     });
   }
 
@@ -62,9 +63,12 @@ export class EditClanciDialogComponent implements OnInit {
     if (this.articleForm.invalid) {
       return;
     }
+    if (this.selectedDestinationId == -1) {
+      this.selectedDestinationId = this.data.clanak.destinacijaId;
+    }
     const clanakData = {
       ...this.articleForm.value,
-      destinacijaId: this.selectedDestinationId,
+      destinacija_id: this.selectedDestinationId,
     };
     this.articleService
       .updateArticle(this.articleId, clanakData)

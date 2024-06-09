@@ -17,6 +17,11 @@ export class UserService {
     return this.http.get<User[]>(this.apiUrl);
   }
 
+  getUsersById(id: number): Observable<User> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<User>(url);
+  }
+
   aktivirajKorisnika(user: User): Observable<User> {
     const url = `${this.apiUrlAD}/aktiviraj/${user.id}`;
     return this.http.get<User>(url);

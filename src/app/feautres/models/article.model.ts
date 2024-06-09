@@ -7,4 +7,5 @@ export interface Article {
   datumKreiranja: Date;
   brojPoseta: number;
   imeDestinacije: string;
+  imeAutora: string;
 }

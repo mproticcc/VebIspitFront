@@ -4,6 +4,8 @@ import { ArticleService } from '../../services/article.service';
 import { Article } from '../../models/article.model';
 import { EditClanciDialogComponent } from '../edit-clanci-dialog/edit-clanci-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-svi-clanci',
@@ -12,11 +14,13 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class SviClanciComponent implements OnInit {
   articles!: Article[];
+  user!: User[];
 
   constructor(
     private router: Router,
     private articleService: ArticleService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -24,9 +28,14 @@ export class SviClanciComponent implements OnInit {
   }
 
   getArticles(): void {
-    this.articleService
-      .getArticles()
-      .subscribe((articles) => (this.articles = articles));
+    this.articleService.getArticles().subscribe((articles) => {
+      this.articles = articles;
+      this.articles.forEach((el) => {
+        this.userService.getUsersById(el.autorId).subscribe((data) => {
+          el.imeAutora = data.ime;
+        });
+      });
+    });
   }
 
   editArticle(clanak: Article): void {

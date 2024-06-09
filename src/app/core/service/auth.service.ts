@@ -51,4 +51,13 @@ export class AuthService {
     }
     return 'Greska';
   }
+
+  getUserId(): number {
+    const token = localStorage.getItem('token');
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      const decodedToken: any = this.jwtHelper.decodeToken(token);
+      return decodedToken.userId;
+    }
+    return 0;
+  }
 }

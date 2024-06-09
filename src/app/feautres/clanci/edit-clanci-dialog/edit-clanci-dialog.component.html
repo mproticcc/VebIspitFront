@@ -1,10 +1,8 @@
-Verovatno puca jer ne prosledjujem dovoljan broj argunameta
-
 <mat-dialog-content class="mat-typography">
   <mat-dialog-actions align="center">
     <div class="container" *ngIf="data.title == 'Edit Clanak'">
       <h2>Edit Clanak</h2>
-      <form [formGroup]="articleForm" (ngSubmit)="updateDestination()">
+      <form [formGroup]="articleForm" (ngSubmit)="updateClanak()">
         <div class="form-group">
           <label for="naslov">Naslov:</label>
           <input type="text" id="naslov" formControlName="naslov" />
@@ -20,7 +18,7 @@ Verovatno puca jer ne prosledjujem dovoljan broj argunameta
 
     <div class="container" *ngIf="data.title == 'Add Clanak'">
       <h2>Dodaj Clanak</h2>
-      <form [formGroup]="articleForm" (ngSubmit)="addDestinacija()">
+      <form [formGroup]="articleForm" (ngSubmit)="addClanak()">
         <div class="form-group">
           <label for="naslov">Naslov:</label>
           <input type="text" id="naslov" formControlName="naslov" />
@@ -29,7 +27,19 @@ Verovatno puca jer ne prosledjujem dovoljan broj argunameta
           <label for="tekst">Tekst:</label>
           <textarea id="tekst" formControlName="tekst"></textarea>
         </div>
-
+        <div>
+          <label for="tekst">Destinacija:</label>
+          <select (change)="onSelect($event.target)">
+            <option value="">Izaberite destinaciju</option>
+            <option
+              *ngFor="let destinacija of destinations"
+              [value]="destinacija.id"
+            >
+              {{ destinacija.ime }}
+            </option>
+          </select>
+        </div>
+        <br /><br />
         <button type="submit" class="btn">Create</button>
       </form>
     </div>

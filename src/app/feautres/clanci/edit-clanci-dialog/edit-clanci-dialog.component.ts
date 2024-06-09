@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Article } from '../../models/article.model';
+import { DestinationService } from '../../services/destination.service';
+import { Destination } from '../../models/destination.model';
+import { AuthService } from 'src/app/core/service/auth.service';
 
 @Component({
   selector: 'app-edit-clanci-dialog',
@@ -14,11 +17,15 @@ export class EditClanciDialogComponent implements OnInit {
   articleForm!: FormGroup;
   isEditMode: boolean = false;
   articleId!: number;
+  destinations!: Destination[];
+  selectedDestinationId!: number;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private articleService: ArticleService,
+    private destinationService: DestinationService,
+    private authService: AuthService,
     private dialogRef: MatDialogRef<EditClanciDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: { title: string; clanak: Article }
@@ -26,10 +33,15 @@ export class EditClanciDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.getAllDestinations();
     if (this.data.title == 'Edit Clanak') {
       this.articleId = this.data.clanak.id;
       this.populateForm(this.data.clanak);
     }
+  }
+  onSelect(destinationId: any) {
+    console.log(destinationId.value);
+    this.selectedDestinationId = destinationId.value;
   }
 
   initForm(): void {
@@ -46,30 +58,44 @@ export class EditClanciDialogComponent implements OnInit {
     });
   }
 
-  updateDestination(): void {
+  updateClanak(): void {
     if (this.articleForm.invalid) {
       return;
     }
-    const destinationData = {
+    const clanakData = {
       ...this.articleForm.value,
-      autor_id: 11,
+      destinacijaId: this.selectedDestinationId,
     };
     this.articleService
-      .updateArticle(this.articleId, destinationData)
+      .updateArticle(this.articleId, clanakData)
       .subscribe(() => {
-        this.router.navigate(['main/destinacije']);
+        this.router.navigate(['main/clanci']);
         this.dialogRef.close();
       });
   }
 
-  addDestinacija(): void {
+  addClanak(): void {
     if (this.articleForm.invalid) {
       return;
     }
-    const destinationData = this.articleForm.value;
-    this.articleService.createArticle(destinationData).subscribe(() => {
-      this.router.navigate(['main/destinacije']);
+    const today = new Date();
+    const timestamp = today.toISOString();
+    const clanakData = {
+      ...this.articleForm.value,
+      datumKreiranja: timestamp,
+      broj_poseta: 0,
+      autorId: this.authService.getUserId(),
+      destinacijaId: this.selectedDestinationId,
+    };
+    this.articleService.createArticle(clanakData).subscribe(() => {
+      this.router.navigate(['main/clanci']);
       this.dialogRef.close();
+    });
+  }
+
+  private getAllDestinations(): void {
+    this.destinationService.getDestinations().subscribe((data) => {
+      this.destinations = data;
     });
   }
 }

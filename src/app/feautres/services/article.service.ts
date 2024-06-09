@@ -46,4 +46,8 @@ export class ArticleService {
   getArticlesByActivity(activityId: number): Observable<Article[]> {
     return this.http.get<Article[]>(`${this.apiUrl}/aktivnost/${activityId}`);
   }
+
+  getArticlesByDestination(activityId: number): Observable<Article[]> {
+    return this.http.get<Article[]>(`${this.apiUrl}/destinacija/${activityId}`);
+  }
 }

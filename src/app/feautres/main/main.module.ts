@@ -9,6 +9,7 @@ import { NajcitanijiComponent } from './najcitaniji/najcitaniji.component';
 import { SingleClanakComponent } from './single-clanak/single-clanak.component';
 import { FormsModule } from '@angular/forms';
 import { AktivnostComponent } from './aktivnost/aktivnost.component';
+import { OdabranaDestinacijaComponent } from './odabrana-destinacija/odabrana-destinacija.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AktivnostComponent } from './aktivnost/aktivnost.component';
     NajcitanijiComponent,
     SingleClanakComponent,
     AktivnostComponent,
+    OdabranaDestinacijaComponent,
   ],
   imports: [
     CommonModule,

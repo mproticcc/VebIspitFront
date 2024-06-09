@@ -11,7 +11,9 @@
   <tbody>
     <tr *ngFor="let destination of destinations">
       <td (click)="goToDestinationArticles(destination.ime)">
-        {{ destination.ime }}
+        <a [routerLink]="['/odabranaDestinacija', destination.id]"
+          >{{ destination.ime }}
+        </a>
       </td>
       <td>{{ destination.opis }}</td>
       <td>

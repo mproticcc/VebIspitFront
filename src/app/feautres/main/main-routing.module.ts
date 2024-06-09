@@ -5,6 +5,7 @@ import { PocetnaComponent } from './pocetna/pocetna.component';
 import { NajcitanijiComponent } from './najcitaniji/najcitaniji.component';
 import { SingleClanakComponent } from './single-clanak/single-clanak.component';
 import { AktivnostComponent } from './aktivnost/aktivnost.component';
+import { OdabranaDestinacijaComponent } from './odabrana-destinacija/odabrana-destinacija.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: 'aktivnost/:id',
     component: AktivnostComponent,
+  },
+  {
+    path: 'odabranaDestinacija/:id',
+    component: OdabranaDestinacijaComponent,
   },
 ];
 

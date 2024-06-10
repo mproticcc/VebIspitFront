@@ -4,6 +4,9 @@ import Entiteti.Korisnik;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -108,21 +111,44 @@ public class UserDb {
 
         try (Connection connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             if (korisnikPostoji(korisnik.getEmail(), korisnik.getIme(), korisnik.getPrezime())) {
                 System.err.println("Korisnik sa datim email-om, imenom i prezimenom već postoji.");
                 return;
             }
+
+            // Hash the password using SHA-256
+            String hashedPassword = hashPassword(korisnik.getLozinka());
+
             preparedStatement.setString(1, korisnik.getEmail());
             preparedStatement.setString(2, korisnik.getIme());
             preparedStatement.setString(3, korisnik.getPrezime());
             preparedStatement.setString(4, korisnik.getTip());
             preparedStatement.setString(5, korisnik.getStatus());
-            preparedStatement.setString(6, korisnik.getLozinka());
+            preparedStatement.setString(6, hashedPassword);
 
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+    }
+
+    private String hashPassword(String password) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+        return bytesToHex(encodedHash);
+    }
+
+    private String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder(2 * hash.length);
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if(hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
     }
 
     private boolean korisnikPostoji(String email, String ime, String prezime) {

@@ -42,7 +42,7 @@ export class SviKorisniciComponent implements OnInit {
       },
       position: { top: '40px' },
       width: '50%',
-      height: '80%',
+      height: '85%',
     });
   }
 
@@ -53,7 +53,7 @@ export class SviKorisniciComponent implements OnInit {
       },
       position: { top: '40px' },
       width: '50%',
-      height: '80%',
+      height: '85%',
     });
   }
 }

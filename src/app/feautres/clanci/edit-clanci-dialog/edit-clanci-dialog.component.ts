@@ -68,7 +68,7 @@ export class EditClanciDialogComponent implements OnInit {
     }
     const clanakData = {
       ...this.articleForm.value,
-      destinacija_id: this.selectedDestinationId,
+      destinacijaId: Number(this.selectedDestinationId),
     };
     this.articleService
       .updateArticle(this.articleId, clanakData)

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import * as CryptoJS from 'crypto-js';
+import { NotificationService } from 'src/app/feautres/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private notification: NotificationService,
     private router: Router
   ) {}
 
@@ -40,12 +42,23 @@ export class LoginComponent implements OnInit {
         if (data) {
           localStorage.setItem('token', data);
           this.router.navigate(['/main/destinacije']);
-        } else {
-          this.errorMessage = data.message;
+          this.notification.snackbarNotification(
+            `Dobrodosao!`,
+            'Close',
+            'center',
+            'top',
+            4000
+          );
         }
       },
       (error: any) => {
-        console.error('Error:', error);
+        this.notification.snackbarNotification(
+          `Greska!`,
+          'Close',
+          'center',
+          'top',
+          4000
+        );
       }
     );
   }

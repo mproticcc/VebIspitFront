@@ -7,6 +7,7 @@ import { Article } from '../../models/article.model';
 import { DestinationService } from '../../services/destination.service';
 import { Destination } from '../../models/destination.model';
 import { AuthService } from 'src/app/core/service/auth.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-edit-clanci-dialog',
@@ -26,6 +27,7 @@ export class EditClanciDialogComponent implements OnInit {
     private articleService: ArticleService,
     private destinationService: DestinationService,
     private authService: AuthService,
+    private notification: NotificationService,
     private dialogRef: MatDialogRef<EditClanciDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: { title: string; clanak: Article }
@@ -75,6 +77,13 @@ export class EditClanciDialogComponent implements OnInit {
       .subscribe(() => {
         this.router.navigate(['main/clanci']);
         this.dialogRef.close();
+        this.notification.snackbarNotification(
+          `Clanak uspesno izmenjen!`,
+          'Close',
+          'center',
+          'top',
+          4000
+        );
       });
   }
 
@@ -93,6 +102,13 @@ export class EditClanciDialogComponent implements OnInit {
     };
     this.articleService.createArticle(clanakData).subscribe(() => {
       this.router.navigate(['main/clanci']);
+      this.notification.snackbarNotification(
+        `Clanak uspesno dodat!`,
+        'Close',
+        'center',
+        'top',
+        4000
+      );
       this.dialogRef.close();
     });
   }

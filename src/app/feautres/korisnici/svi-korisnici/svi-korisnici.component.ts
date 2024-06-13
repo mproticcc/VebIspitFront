@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { EditKorisnikDialogComponent } from '../edit-korisnik-dialog/edit-korisnik-dialog.component';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-svi-korisnici',
@@ -15,7 +16,7 @@ export class SviKorisniciComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private route: Router,
+    private notification: NotificationService,
     private dialog: MatDialog
   ) {}
 
@@ -29,11 +30,26 @@ export class SviKorisniciComponent implements OnInit {
 
   aktivirajKorisnika(user: User): void {
     this.userService.aktivirajKorisnika(user).subscribe();
+    this.notification.snackbarNotification(
+      `Korisnik uspesno aktiviran!`,
+      'Close',
+      'center',
+      'top',
+      4000
+    );
   }
 
   deaktivirajKornsnika(user: User): void {
     this.userService.deaktivirajKorisnika(user).subscribe();
+    this.notification.snackbarNotification(
+      `Korisnik uspesno deaktiviran!`,
+      'Close',
+      'center',
+      'top',
+      4000
+    );
   }
+
   editUser(user: User): void {
     this.dialog.open(EditKorisnikDialogComponent, {
       data: {

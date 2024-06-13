@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-edit-korisnik-dialog',
@@ -18,6 +19,7 @@ export class EditKorisnikDialogComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private userService: UserService,
+    private notification: NotificationService,
     private dialogRef: MatDialogRef<EditKorisnikDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: { title: string; user: User }
@@ -52,6 +54,19 @@ export class EditKorisnikDialogComponent implements OnInit {
   }
 
   updateUser(): void {
+    if (
+      this.userForm.get('lozinka')?.value !=
+      this.userForm.get('confirmPassword')?.value
+    ) {
+      this.notification.snackbarNotification(
+        `Lozinke nisu iste!`,
+        'Close',
+        'center',
+        'top',
+        4000
+      );
+      return;
+    }
     if (this.userForm.invalid) {
       return;
     }
@@ -62,11 +77,31 @@ export class EditKorisnikDialogComponent implements OnInit {
     };
     this.userService.updateUser(this.userId, userData).subscribe(() => {
       this.router.navigate(['main/koricnici']);
+      this.notification.snackbarNotification(
+        `Korisnik uspesno izmenjen!`,
+        'Close',
+        'center',
+        'top',
+        4000
+      );
       this.dialogRef.close();
     });
   }
 
   addUser(): void {
+    if (
+      this.userForm.get('lozinka')?.value !=
+      this.userForm.get('confirmPassword')?.value
+    ) {
+      this.notification.snackbarNotification(
+        `Lozinke nisu iste!`,
+        'Close',
+        'center',
+        'top',
+        4000
+      );
+      return;
+    }
     if (this.userForm.invalid) {
       return;
     }
@@ -76,6 +111,13 @@ export class EditKorisnikDialogComponent implements OnInit {
     };
     this.userService.createUser(userData).subscribe(() => {
       this.router.navigate(['main/koricnici']);
+      this.notification.snackbarNotification(
+        `Korisnik uspesno dodat!`,
+        'Close',
+        'center',
+        'top',
+        4000
+      );
       this.dialogRef.close();
     });
   }

@@ -6,6 +6,7 @@ import { EditClanciDialogComponent } from '../edit-clanci-dialog/edit-clanci-dia
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-svi-clanci',
@@ -17,9 +18,9 @@ export class SviClanciComponent implements OnInit {
   user!: User[];
 
   constructor(
-    private router: Router,
     private articleService: ArticleService,
     private dialog: MatDialog,
+    private notification: NotificationService,
     private userService: UserService
   ) {}
 
@@ -64,6 +65,13 @@ export class SviClanciComponent implements OnInit {
   deleteArticle(articleId: number): void {
     this.articleService.deleteClanak(articleId).subscribe(() => {
       this.getArticles();
+      this.notification.snackbarNotification(
+        `Clanak uspesno obrisan!`,
+        'Close',
+        'center',
+        'top',
+        4000
+      );
     });
   }
 }

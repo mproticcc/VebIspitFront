@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { MainModule } from './feautres/main/main.module';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule,
     MainModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

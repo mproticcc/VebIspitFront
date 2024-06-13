@@ -11,11 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
   private apiUrl = 'http://localhost:8080/login';
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private jwtHelper: JwtHelperService
-  ) {}
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
 
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>(this.apiUrl, { email, password });

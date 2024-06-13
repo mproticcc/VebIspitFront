@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DestinationService } from '../../services/destination.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Destination } from '../../models/destination.model';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-edit-destinacije-dialog',
@@ -18,6 +19,7 @@ export class EditDestinacijeDialogComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private destinationService: DestinationService,
+    private notification: NotificationService,
     private dialogRef: MatDialogRef<EditDestinacijeDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: { title: string; destinacija: Destination }
@@ -55,6 +57,13 @@ export class EditDestinacijeDialogComponent implements OnInit {
       .subscribe(() => {
         this.router.navigate(['main/destinacije']);
         this.dialogRef.close();
+        this.notification.snackbarNotification(
+          `Destinacija uspesno izmenjena!`,
+          'Close',
+          'center',
+          'top',
+          4000
+        );
       });
   }
 
@@ -66,6 +75,13 @@ export class EditDestinacijeDialogComponent implements OnInit {
     this.destinationService.createDestination(destinationData).subscribe(() => {
       this.router.navigate(['main/destinacije']);
       this.dialogRef.close();
+      this.notification.snackbarNotification(
+        `Destinacija uspesno dodata!`,
+        'Close',
+        'center',
+        'top',
+        4000
+      );
     });
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/service/auth.service';
+import { NotificationService } from 'src/app/feautres/services/notification.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -12,7 +13,11 @@ export class NavigationBarComponent implements OnInit {
   isLogged: boolean = false;
   userName!: string;
 
-  constructor(private authService: AuthService, private route: Router) {}
+  constructor(
+    private authService: AuthService,
+    private route: Router,
+    private notification: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
@@ -24,5 +29,12 @@ export class NavigationBarComponent implements OnInit {
     this.authService.logout();
     this.route.navigateByUrl('');
     this.ngOnInit();
+    this.notification.snackbarNotification(
+      `Caoo!`,
+      'Close',
+      'center',
+      'top',
+      4000
+    );
   }
 }

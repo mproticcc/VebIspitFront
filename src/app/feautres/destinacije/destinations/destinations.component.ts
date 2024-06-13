@@ -4,6 +4,7 @@ import { DestinationService } from '../../services/destination.service';
 import { Destination } from '../../models/destination.model';
 import { MatDialog } from '@angular/material/dialog';
 import { EditDestinacijeDialogComponent } from '../edit-destinacije-dialog/edit-destinacije-dialog.component';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-destinations',
@@ -16,6 +17,7 @@ export class DestinationsComponent implements OnInit {
   constructor(
     private router: Router,
     private destinationService: DestinationService,
+    private notification: NotificationService,
     private dialog: MatDialog
   ) {}
 
@@ -48,6 +50,13 @@ export class DestinationsComponent implements OnInit {
   deleteDestination(destinationId: number): void {
     this.destinationService.deleteDestinacija(destinationId).subscribe(() => {
       this.getDestinations();
+      this.notification.snackbarNotification(
+        `Destinacija uspesno obrisana!`,
+        'Close',
+        'center',
+        'top',
+        4000
+      );
     });
   }
 

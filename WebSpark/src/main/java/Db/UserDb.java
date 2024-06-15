@@ -106,15 +106,14 @@ public class UserDb {
                 .compact();
     }
 
-    public void insertKorisnik(Korisnik korisnik) {
+    public String insertKorisnik(Korisnik korisnik) {
         String sql = "INSERT INTO korisnik (email, ime, prezime, tip, status, lozinka) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             if (korisnikPostoji(korisnik.getEmail(), korisnik.getIme(), korisnik.getPrezime())) {
-                System.err.println("Korisnik sa datim email-om, imenom i prezimenom već postoji.");
-                return;
+                return "Korisnik sa datim email-om, imenom i prezimenom već postoji.";
             }
 
             // Hash the password using SHA-256
@@ -128,8 +127,10 @@ public class UserDb {
             preparedStatement.setString(6, hashedPassword);
 
             preparedStatement.executeUpdate();
+            return null; // Indicating success
         } catch (SQLException | NoSuchAlgorithmException e) {
             e.printStackTrace();
+            return "Greška pri unosu korisnika.";
         }
     }
 

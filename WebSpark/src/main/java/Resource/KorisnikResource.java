@@ -57,8 +57,13 @@ public class KorisnikResource {
         post("/korisnici", synchronizedRoute((req, res) -> {
             res.type("application/json");
             Korisnik korisnik = gson.fromJson(req.body(), Korisnik.class);
-            korisnikService.insertKorisnik(korisnik);
-            return gson.toJson(korisnik);
+            String result = korisnikService.insertKorisnik(korisnik);
+            if (result != null) {
+                res.status(401);
+                return gson.toJson(result);
+            } else {
+                return gson.toJson(korisnik);
+            }
         }));
 
         put("/korisnici/:id", synchronizedRoute((req, res) -> {

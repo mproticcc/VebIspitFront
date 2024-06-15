@@ -7,8 +7,8 @@ import java.util.List;
 public class KorisnikService {
     private UserDb korisnikDAO = new UserDb();
 
-    public void insertKorisnik(Korisnik korisnik) {
-        korisnikDAO.insertKorisnik(korisnik);
+    public String insertKorisnik(Korisnik korisnik) {
+        return korisnikDAO.insertKorisnik(korisnik);
     }
 
     public Korisnik selectKorisnik(int id) {

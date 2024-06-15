@@ -109,16 +109,27 @@ export class EditKorisnikDialogComponent implements OnInit {
       ...this.userForm.value,
       status: 'aktivan',
     };
-    this.userService.createUser(userData).subscribe(() => {
-      this.router.navigate(['main/koricnici']);
-      this.notification.snackbarNotification(
-        `Korisnik uspesno dodat!`,
-        'Close',
-        'center',
-        'top',
-        4000
-      );
-      this.dialogRef.close();
-    });
+    this.userService.createUser(userData).subscribe(
+      () => {
+        this.router.navigate(['main/koricnici']);
+        this.notification.snackbarNotification(
+          `Korisnik uspesno dodat!`,
+          'Close',
+          'center',
+          'top',
+          4000
+        );
+        this.dialogRef.close();
+      },
+      (error: any) => {
+        this.notification.snackbarNotification(
+          `Vec postoji takav korisnik sa prosledjenim podacima !`,
+          'Close',
+          'center',
+          'top',
+          4000
+        );
+      }
+    );
   }
 }
